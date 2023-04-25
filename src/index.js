@@ -52,6 +52,13 @@ const fetchImages = () => {
         const galleryItemsMarkup = images.map((image) => createGalleryItemMarkup(image)).join("");
         galleryList.insertAdjacentHTML("beforeend", galleryItemsMarkup);
 
+        // плавный скрол
+        const { height: cardHeight } = galleryList.firstElementChild.getBoundingClientRect();
+        window.scrollBy({
+          top: cardHeight * 2,
+          behavior: "smooth",
+        });
+
         if (images.length < 40) {
           Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
           loadMoreBtn.classList.add("is-hidden");
@@ -65,6 +72,7 @@ const fetchImages = () => {
       Notiflix.Notify.failure("Oops! Something went wrong. Please try again later.");
     });
 };
+
 
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -89,3 +97,22 @@ loadMoreBtn.addEventListener("click", () => {
 
   fetchImages();
 });
+
+
+// загрузка
+let loading = false;
+
+const handleScroll = () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+
+  if (isAtBottom && !loading) {
+    loading = true;
+    page += 1;
+    fetchImages().finally(() => {
+      loading = false;
+    });
+  }
+};
+
+window.addEventListener("scroll", handleScroll);
