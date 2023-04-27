@@ -125,6 +125,7 @@ if (images.length < 40) {
 } else {
   loadMoreBtn.classList.remove("is-hidden");
 }
+
 //load more 
 loadMoreBtn.addEventListener("click", () => {
   if (loadMoreBtn.classList.contains("is-hidden")) {
