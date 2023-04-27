@@ -2,6 +2,8 @@ const API_KEY = "35738643-c5bfe559c2bde2990bd981af5";
 const searchForm = document.querySelector("#search-form");
 const loadMoreBtn = document.querySelector(".load-more");
 const galleryList = document.querySelector(".gallery");
+import Notiflix from '/node_modules/Notiflix';
+
 
 let searchQuery = "";
 let page = 1;
