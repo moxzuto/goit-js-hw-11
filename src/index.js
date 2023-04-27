@@ -1,8 +1,8 @@
+import Notiflix from 'notiflix';
 const API_KEY = "35738643-c5bfe559c2bde2990bd981af5";
 const searchForm = document.querySelector("#search-form");
 const loadMoreBtn = document.querySelector(".load-more");
 const galleryList = document.querySelector(".gallery");
-import Notiflix from 'notiflix';
 
 let searchQuery = "";
 let page = 1;
@@ -98,7 +98,6 @@ loadMoreBtn.addEventListener("click", () => {
 
   fetchImages();
 });
-
 
 // загрузка
 let loading = false;
