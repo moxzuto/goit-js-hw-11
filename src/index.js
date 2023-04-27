@@ -4,6 +4,7 @@ const searchForm = document.querySelector("#search-form");
 const loadMoreBtn = document.querySelector(".load-more");
 const galleryList = document.querySelector(".gallery");
 
+let images = [];
 let searchQuery = "";
 let page = 1;
 
