@@ -2,8 +2,7 @@ const API_KEY = "35738643-c5bfe559c2bde2990bd981af5";
 const searchForm = document.querySelector("#search-form");
 const loadMoreBtn = document.querySelector(".load-more");
 const galleryList = document.querySelector(".gallery");
-import Notiflix from '/node_modules/Notiflix';
-
+import Notiflix from 'notiflix';
 
 let searchQuery = "";
 let page = 1;
@@ -118,3 +117,21 @@ const handleScroll = () => {
 };
 
 window.addEventListener("scroll", handleScroll);
+
+
+// не делать запрос
+if (images.length < 40) {
+  Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+  loadMoreBtn.classList.add("is-hidden");
+} else {
+  loadMoreBtn.classList.remove("is-hidden");
+}
+//load more 
+loadMoreBtn.addEventListener("click", () => {
+  if (loadMoreBtn.classList.contains("is-hidden")) {
+    return;
+  }
+  
+  page += 1;
+  fetchImages();
+});
